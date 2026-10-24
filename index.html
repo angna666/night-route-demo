@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0714">
+<title>回血航线 · 熬夜翌日恢复导航</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-route="light">
+
+<!-- ============ Lucide 内联图标 sprite（离线零依赖） ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+  <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M12 10V2"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4-4-4 4"/><path d="M16 18a4 4 0 0 0-8 0"/></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></symbol>
+  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="i-navigation-2" viewBox="0 0 24 24"><polygon points="12 2 19 21 12 17 5 21 12 2"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-battery-low" viewBox="0 0 24 24"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/></symbol>
+  <symbol id="i-battery-charging" viewBox="0 0 24 24"><path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M6 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/><path d="m11 7-3 5h4l-3 5"/><line x1="22" x2="22" y1="11" y2="13"/></symbol>
+  <symbol id="i-scan-face" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+  <symbol id="i-triangle-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 20h16a2 2 0 0 0 1.73-2"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-alarm-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-gamepad-2" viewBox="0 0 24 24"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></symbol>
+  <symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-frown" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+</svg>
+
+<!-- ============ 全局氛围层 ============ -->
+<div class="fx-stars" aria-hidden="true"></div>
+<svg class="fx-skyline" viewBox="0 0 480 160" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <path fill="#150c2b" d="M0 160 V110 h26 v-26 h20 v40 h16 v-58 h30 v34 h18 v-52 h30 v86 h22 v-40 h26 v22 h18 v-64 h32 v92 h24 v-56 h28 v36 h20 v-72 h30 v104 h26 v-44 h28 v24 h22 v-38 h30 v70 h22 v40 z"/>
+  <path fill="#0d0720" d="M0 160 V128 h34 v-20 h26 v30 h30 v-40 h34 v46 h28 v-28 h32 v40 h30 v-48 h34 v56 h30 v-30 h34 v42 h32 v-22 h36 v34 h30 v-40 h34 v52 h30 v-28 h40 v40 z" opacity=".92"/>
+  <g fill="rgba(255,62,165,.42)">
+    <rect x="58" y="72" width="3" height="3"/><rect x="66" y="80" width="3" height="3"/>
+    <rect x="120" y="60" width="3" height="3"/><rect x="196" y="52" width="3" height="3"/>
+    <rect x="204" y="64" width="3" height="3"/><rect x="286" y="70" width="3" height="3"/>
+    <rect x="356" y="58" width="3" height="3"/><rect x="364" y="70" width="3" height="3"/>
+  </g>
+  <g fill="rgba(0,229,255,.42)">
+    <rect x="40" y="96" width="3" height="3"/><rect x="150" y="86" width="3" height="3"/>
+    <rect x="242" y="76" width="3" height="3"/><rect x="320" y="92" width="3" height="3"/>
+    <rect x="416" y="84" width="3" height="3"/><rect x="430" y="96" width="3" height="3"/>
+  </g>
+</svg>
+<div class="fx-grid" aria-hidden="true"></div>
+<div class="fx-overlay" aria-hidden="true"></div>
+
+<!-- ============ 应用主体：桌面双栏 / 移动单列 ============ -->
+<div class="app">
+
+  <!-- 侧栏：品牌 + 系统状态 + 冷知识（移动端只显示品牌行） -->
+  <aside class="side">
+    <div class="side-brand">
+      <span class="brand-mark"><svg class="ic"><use href="#i-navigation-2"/></svg></span>
+      <div class="brand-txt">
+        <h1 class="brand-title">回血航线</h1>
+        <span class="brand-sub mono">RECOVERY ROUTE · 熬夜翌日导航系统 v3.0</span>
+      </div>
+    </div>
+    <div class="hud-status">
+      <span class="hud-chip mono"><svg class="ic ic-14"><use href="#i-battery-low"/></svg>62%</span>
+      <span class="hud-chip mono"><span class="live-dot" aria-hidden="true"></span><span id="clock">--:--</span></span>
+    </div>
+    <p class="side-tag">熬过的夜，翌日还清。<br>上报昨晚战况，系统为你生成一条可执行的回血时间轴。</p>
+    <div class="side-status card">
+      <div class="ss-row"><span class="ss-lbl">系统状态</span><b class="ss-val ss-ok"><span class="live-dot" aria-hidden="true"></span>在线</b></div>
+      <div class="ss-row"><span class="ss-lbl">本机时间</span><b class="ss-val mono" id="clock-side">--:--:--</b></div>
+      <div class="ss-row"><span class="ss-lbl">今日日期</span><b class="ss-val mono" id="date-side">--</b></div>
+      <div class="ss-row"><span class="ss-lbl">今晚额度</span><b class="ss-val mono">早睡 × 1</b></div>
+    </div>
+    <div class="side-tips card">
+      <span class="side-tips-head"><svg class="ic ic-14"><use href="#i-leaf"/></svg>回血冷知识</span>
+      <ul class="tips-list">
+        <li>咖啡因半衰期约 5 小时——下午那杯，半夜还有一半在脑子里加班。</li>
+        <li>午睡超过 30 分钟会坠入深睡，醒来像被系统强制还原。</li>
+        <li>连续两周每天少睡 1 小时，认知水平约等于通宵一整晚。</li>
+      </ul>
+    </div>
+    <p class="side-flavor mono">STAY-UP DEBT CLEARING SYSTEM · FOR NIGHT OWLS</p>
+  </aside>
+
+  <!-- 主栏：录入 / 航线 -->
+  <main class="main">
+    <!-- 步骤一：战况录入 -->
+    <section class="pick" id="pick">
+      <div class="pick-head">
+        <h2>昨晚战况如何？</h2>
+        <p>如实上报，系统为你规划翌日回血航线。</p>
+      </div>
+      <div class="cond-grid" id="cond-grid">
+        <div class="cond-skel"></div>
+        <div class="cond-skel"></div>
+        <div class="cond-skel"></div>
+      </div>
+      <div class="actions-block">
+        <span class="actions-lbl"><svg class="ic ic-14"><use href="#i-flame"/></svg>昨晚干了什么？<i>可多选 · 选了更定制</i></span>
+        <div class="actions-grid" id="actions-grid"></div>
+      </div>
+      <button class="btn-primary btn-generate" id="btn-generate" disabled>
+        <svg class="ic"><use href="#i-route"/></svg>先选一个战况
+      </button>
+    </section>
+
+    <!-- 步骤二：恢复航线 -->
+    <section class="plan" id="plan" hidden>
+      <div class="summary card">
+        <div class="sum-stats">
+          <div class="stat"><span class="stat-lbl">昨晚入睡</span><b class="mono" id="stat-slept">--</b></div>
+          <div class="stat"><span class="stat-lbl">睡眠债</span><b class="mono" id="stat-debt">--</b></div>
+          <div class="stat"><span class="stat-lbl">今晚入箱</span><b class="mono" id="stat-tonight">--</b></div>
+        </div>
+        <div class="sum-meter">
+          <div class="sum-meter-head">
+            <span class="sum-lbl"><svg class="ic ic-14"><use href="#i-zap"/></svg>今日恢复力</span>
+            <b class="mono" id="recovery-num">0%</b>
+            <button class="btn-ghost" id="btn-reupdate">更换战况</button>
+          </div>
+          <div class="bar bar-lg"><div class="bar-fill" id="recovery-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <section class="timeline" id="timeline" aria-live="polite">
+        <div class="sk-node"><div class="sk-card sk-1"></div></div>
+        <div class="sk-node"><div class="sk-card sk-2"></div></div>
+        <div class="sk-node"><div class="sk-card sk-3"></div></div>
+      </section>
+    </section>
+
+    <footer class="disclaimer">
+      <svg class="ic ic-14"><use href="#i-triangle-alert"/></svg>
+      <span>本页纯属娱乐 · 恢复建议仅供参考 · 长期睡眠问题请咨询医生</span>
+    </footer>
+  </main>
+</div>
+
+<!-- ============ 恢复结算弹层 ============ -->
+<div class="modal-backdrop" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <header class="modal-head">
+      <div class="modal-title-wrap">
+        <h2 id="modal-title">恢复结算报告</h2>
+        <span class="mono modal-sub">RECOVERY REPORT · 回血航线出品</span>
+      </div>
+      <button class="icon-btn" id="modal-close" aria-label="关闭报告">
+        <svg class="ic"><use href="#i-x"/></svg>
+      </button>
+    </header>
+    <div class="modal-body" id="report-body"></div>
+    <footer class="modal-foot">
+      <button class="btn-primary" id="btn-again">
+        <svg class="ic"><use href="#i-alarm-clock"/></svg>换一晚 · 重新上报战况
+      </button>
+    </footer>
+  </div>
+</div>
+
+<div class="toast mono" id="toast" role="status"></div>
+
+<script src="mock.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
